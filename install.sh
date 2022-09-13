@@ -950,9 +950,9 @@ ohai "Downloading and installing Homebrew..."
       execute "git" "config" "remote.origin.url" "${HOMEBREW_CORE_GIT_REMOTE}"
       execute "git" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
       execute "git" "config" "core.autocrlf" "false"
-      execute "git" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
-      execute "git" "remote" "set-head" "origin" "--auto" >/dev/null
-      execute "git" "reset" "--hard" "origin/master"
+      execute "git" "fetch" #"--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      #execute "git" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "git" "reset" "--hard" "temporary"
 
       cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
     ) || exit 1
