@@ -162,10 +162,12 @@ fi
 CHMOD=("/bin/chmod")
 MKDIR=("/bin/mkdir" "-p")
 HOMEBREW_BREW_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/brew"
+HOMEBREW_BREW_DEFAULT_GIT_BRANCH="master"
 HOMEBREW_CORE_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/homebrew-core"
 
 # Use remote URLs of Homebrew repositories from environment if set.
 HOMEBREW_BREW_GIT_REMOTE="${HOMEBREW_BREW_GIT_REMOTE:-"${HOMEBREW_BREW_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_BREW_GIT_BRANCH="${HOMEBREW_BREW_GIT_BRANCH:-"${HOMEBREW_BREW_DEFAULT_GIT_BRANCH}"}"
 HOMEBREW_CORE_GIT_REMOTE="${HOMEBREW_CORE_GIT_REMOTE:-"${HOMEBREW_CORE_DEFAULT_GIT_REMOTE}"}"
 # The URLs with and without the '.git' suffix are the same Git remote. Do not prompt.
 if [[ "${HOMEBREW_BREW_GIT_REMOTE}" == "${HOMEBREW_BREW_DEFAULT_GIT_REMOTE}.git" ]]
@@ -915,6 +917,8 @@ ohai "Downloading and installing Homebrew..."
   execute "git" "fetch" "--force" "--tags" "origin"
 
   execute "git" "reset" "--hard" "origin/master"
+  
+  execute "git" "checkout" "${HOMEBREW_BREW_GIT_BRANCH}"
 
   if [[ "${HOMEBREW_REPOSITORY}" != "${HOMEBREW_PREFIX}" ]]
   then
