@@ -918,7 +918,7 @@ ohai "Downloading and installing Homebrew..."
 
   execute "git" "reset" "--hard" "origin/master"
   
-  execute "git" "checkout" "${HOMEBREW_BREW_GIT_BRANCH}"
+  execute "git" "checkout"  "-b" "temporary" "${HOMEBREW_BREW_GIT_BRANCH}"
 
   if [[ "${HOMEBREW_REPOSITORY}" != "${HOMEBREW_PREFIX}" ]]
   then
